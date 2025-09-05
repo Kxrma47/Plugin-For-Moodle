@@ -1,0 +1,306 @@
+
+
+:root {
+    --moodle-transition-normal: 0.2s ease;
+    --moodle-transition-slow: 0.3s ease;
+    --moodle-radius-md: 6px;
+    --moodle-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --moodle-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --moodle-animation-fast: 0.15s;
+    --moodle-animation-normal: 0.3s;
+    --moodle-animation-slow: 0.6s;
+    }
+    .block_poll_professor {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    }
+    .poll_voting_item {
+    background: white;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0;
+    margin-bottom: 0;
+    box-shadow: none;
+    }
+    .block_poll .available-polls-wrapper {
+    background: white !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    max-height: 500px !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #dee2e6 #f8f9fa !important;
+    }
+    .block_poll .available-polls-wrapper::-webkit-scrollbar {
+    width: 8px !important;
+    }
+    .block_poll .available-polls-wrapper::-webkit-scrollbar-track {
+    background: #f8f9fa !important;
+    border-radius: 4px !important;
+    }
+    .block_poll .available-polls-wrapper::-webkit-scrollbar-thumb {
+    background: #dee2e6 !important;
+    border-radius: 4px !important;
+    }
+    .block_poll .available-polls-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #adb5bd !important;
+    }
+    .block_poll .poll_voting_item {
+    border: none !important;
+    border-bottom: 1px solid #e9ecef !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: white !important;
+    }
+    .block_poll .poll_voting_item:hover {
+    background: #f8f9fa !important;
+    }
+    .block_poll .poll_header {
+    padding: 14px 16px !important;
+    background: #f8f9fa !important;
+    border-bottom: 1px solid #e9ecef !important;
+    cursor: pointer !important;
+    }
+    .block_poll .poll_header:hover {
+    background: #e9ecef !important;
+    }
+    .block_poll .poll_title {
+    color: #333 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin: 0 0 6px 0 !important;
+    }
+    .block_poll .poll_description {
+    color: #666 !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    margin: 4px 0 !important;
+    }
+    .block_poll .poll_info_badges {
+    display: flex !important;
+    gap: 6px !important;
+    margin-top: 6px !important;
+    flex-wrap: wrap !important;
+    }
+    .block_poll .poll_info_badges span {
+    background: #e9ecef !important;
+    color: #495057 !important;
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    border: 1px solid #dee2e6 !important;
+    }
+    .block_poll .poll_content {
+    padding: 16px !important;
+    background: white !important;
+    border-top: 1px solid #e9ecef !important;
+    }
+    .block_poll .available-polls-wrapper {
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    }
+    @keyframes slideDown {
+    from {
+    opacity: 0;
+    transform: translateY(-8px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    .block_poll .poll_toggle_icon {
+    font-size: 12px !important;
+    color: #6c757d !important;
+    font-weight: bold !important;
+    transition: all var(--moodle-transition-normal) !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    background: rgba(108, 117, 125, 0.1) !important;
+    }
+    .block_poll .poll_toggle_icon:hover {
+    background: rgba(108, 117, 125, 0.2) !important;
+    color: #495057 !important;
+    }
+    .block_poll .form-check {
+    margin: 10px 0 !important;
+    padding: 12px 16px !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 6px !important;
+    background: #f8f9fa !important;
+    cursor: pointer !important;
+    transition: all var(--moodle-transition-normal) !important;
+    }
+    .block_poll .form-check:hover {
+    background: #e3f2fd !important;
+    border-color: #2196f3 !important;
+    transform: translateX(3px) !important;
+    }
+    .block_poll .form-check-input {
+    margin-right: 10px !important;
+    transform: scale(1.2) !important;
+    accent-color: #2196f3 !important;
+    }
+    .block_poll .form-check-label {
+    margin: 0 !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
+    width: 100% !important;
+    display: block !important;
+    font-size: 13px !important;
+    }
+    .block_poll .vote-warning {
+    color: #856404 !important;
+    font-size: 12px !important;
+    margin: 16px 0 !important;
+    padding: 14px 18px !important;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%) !important;
+    border: 1px solid #ffc107 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.1) !important;
+    }
+    .block_poll .vote-warning strong {
+    color: #856404 !important;
+    font-size: 12px !important;
+    }
+    .block_poll .vote-warning p {
+    margin: 6px 0 0 0 !important;
+    color: #856404 !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    }
+    .block_poll .vote_submit_section {
+    text-align: center !important;
+    margin: 20px 0 !important;
+    }
+    .block_poll .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    border: none !important;
+    padding: 12px 28px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all var(--moodle-transition-normal) !important;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2) !important;
+    }
+    .block_poll .btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
+    }
+    .block_poll .poll_voted {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%) !important;
+    border: 1px solid #28a745 !important;
+    border-radius: 6px !important;
+    padding: 16px !important;
+    margin: 12px 0 !important;
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1) !important;
+    }
+    .block_poll .poll_voted .badge {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    color: white !important;
+    padding: 6px 12px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    margin-right: 10px !important;
+    }
+    .block_poll .poll_voted p {
+    margin: 6px 0 0 0 !important;
+    color: #155724 !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+    }
+    .poll_question {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #495057;
+    }
+    .poll_voting_form {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    }
+    .form-check {
+    margin-bottom: 10px;
+    }
+    .form-check-input {
+    margin-right: 8px;
+    }
+    .form-check-label {
+    cursor: pointer;
+    font-size: 14px;
+    color: #495057;
+    }
+    .poll_voted {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 15px;
+    }
+    .badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    }
+    .badge-success {
+    background: #28a745;
+    color: white;
+    }
+    .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color var(--moodle-transition-slow);
+    }
+    .btn-primary {
+    background: #007bff;
+    color: white;
+    }
+    .btn-primary:hover {
+    background: #0056b3;
+    }
+    #pollSearch {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    }
+    #btnPollsSection {
+    padding: 4px 8px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    }
+    @media (max-width: 768px) {
+    .block_poll_professor {
+    padding: 0 15px;
+    }
+    .poll_voting_item {
+    padding: 15px;
+    }
+    }

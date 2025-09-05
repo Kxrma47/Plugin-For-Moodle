@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/poll/db" VERSION="20241201" COMMENT="XMLDB file for Poll block plugin"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+        <TABLE NAME="block_poll_polls" COMMENT="Stores poll information">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="poll_type" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="single" SEQUENCE="false"/>
+                <FIELD NAME="poll_mode" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="text" SEQUENCE="false"/>
+                <FIELD NAME="created_by" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="start_time" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="end_time" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="created_by_idx" UNIQUE="false" FIELDS="created_by"/>
+                <INDEX NAME="active_idx" UNIQUE="false" FIELDS="active"/>
+                <INDEX NAME="poll_type_idx" UNIQUE="false" FIELDS="poll_type"/>
+                <INDEX NAME="poll_mode_idx" UNIQUE="false" FIELDS="poll_mode"/>
+            </INDEXES>
+        </TABLE>
+        
+        <TABLE NAME="block_poll_options" COMMENT="Stores poll options">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="poll_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="option_text" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="start_time" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="end_time" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="sort_order" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="poll_id_fk" TYPE="foreign" FIELDS="poll_id" REFTABLE="block_poll_polls" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="poll_id_idx" UNIQUE="false" FIELDS="poll_id"/>
+                <INDEX NAME="sort_order_idx" UNIQUE="false" FIELDS="sort_order"/>
+            </INDEXES>
+        </TABLE>
+        
+        <TABLE NAME="block_poll_votes" COMMENT="Stores user votes">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="poll_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="option_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="time_voted" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="poll_id_fk" TYPE="foreign" FIELDS="poll_id" REFTABLE="block_poll_polls" REFFIELDS="id"/>
+                <KEY NAME="option_id_fk" TYPE="foreign" FIELDS="option_id" REFTABLE="block_poll_options" REFFIELDS="id"/>
+                <KEY NAME="user_id_fk" TYPE="foreign" FIELDS="user_id" REFTABLE="user" REFFIELDS="id"/>
+                <KEY NAME="unique_vote" TYPE="unique" FIELDS="poll_id, user_id, option_id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="poll_id_idx" UNIQUE="false" FIELDS="poll_id"/>
+                <INDEX NAME="user_id_idx" UNIQUE="false" FIELDS="user_id"/>
+            </INDEXES>
+        </TABLE>
+        
+        <TABLE NAME="block_poll_defense_settings" COMMENT="Stores defense settings and breaks information for time-based polls">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="poll_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="defense_minutes" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="20" SEQUENCE="false"/>
+                <FIELD NAME="buffer_minutes" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="5" SEQUENCE="false"/>
+                <FIELD NAME="number_of_defenses" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="4" SEQUENCE="false"/>
+                <FIELD NAME="insert_breaks" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="how_many_breaks" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+                <FIELD NAME="break_minutes" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="10" SEQUENCE="false"/>
+                <FIELD NAME="note" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="poll_id_fk" TYPE="foreign" FIELDS="poll_id" REFTABLE="block_poll_polls" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="poll_id_idx" UNIQUE="false" FIELDS="poll_id"/>
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+</XMLDB>
+
+
