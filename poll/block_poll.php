@@ -46,6 +46,19 @@ class block_poll extends block_base {
             $is_teacher = true;
         }
         
+        // Also check for course-level teacher roles
+        if (!$is_teacher) {
+            $courses = enrol_get_users_courses($USER->id, true);
+            foreach ($courses as $course) {
+                $course_context = context_course::instance($course->id);
+                if (has_capability('moodle/course:manageactivities', $course_context) || 
+                    has_capability('moodle/course:create', $course_context)) {
+                    $is_teacher = true;
+                    break;
+                }
+            }
+        }
+        
         if ($USER->username === 'admin' || $USER->id == 1) {
             $is_manager = true;
         }
@@ -61,7 +74,7 @@ class block_poll extends block_base {
         } else {
             $canmanage = false;
             $canvote = false;
-            $role_display = 'Student/User';
+            $role_display = 'User';
         }
         
 
