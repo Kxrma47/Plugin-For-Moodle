@@ -60,7 +60,7 @@ class block_poll extends block_base {
             $role_display = 'Teacher/Professor';
         } else {
             $canmanage = false;
-            $canvote = true;
+            $canvote = false;
             $role_display = 'Student/User';
         }
         
