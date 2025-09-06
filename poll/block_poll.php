@@ -505,6 +505,14 @@ class block_poll extends block_base {
                 "select_your_vote_multiple": "Выберите ваш голос (можно выбрать несколько вариантов):",
                 "select_your_vote_single": "Выберите ваш голос:",
                 
+                // Vote confirmation modal translations
+                "PERMANENT VOTE CONFIRMATION": "ПОДТВЕРЖДЕНИЕ ПОСТОЯННОГО ГОЛОСА",
+                "This vote cannot be changed once submitted!": "Этот голос нельзя изменить после отправки!",
+                "You are about to vote for:": "Вы собираетесь проголосовать за:",
+                "Continue?": "Продолжить?",
+                "Submit Vote": "Отправить голос",
+                "Cancel": "Отмена",
+                
                 // Poll choice type translations (lowercase keys for data-translate)
                 "multiple_choice": "Множественный выбор",
                 "single_choice": "Один выбор"
@@ -3029,33 +3037,33 @@ class block_poll extends block_base {
             const modalBtn = document.getElementById(\'modalBtn\');
             const modalCancelBtn = document.getElementById(\'modalCancelBtn\');
             
-            modalTitle.textContent = \'PERMANENT VOTE CONFIRMATION\';
+            modalTitle.textContent = getTranslatedText(\'PERMANENT VOTE CONFIRMATION\');
             
             
             let messageHTML = \'<div style="text-align: left; margin-bottom: 20px;">\';
-            messageHTML += \'<p style="margin: 0 0 15px 0; font-weight: 600; color: #dc3545;">⚠️ This vote cannot be changed once submitted!</p>\';
-            messageHTML += \'<p style="margin: 0 0 15px 0;">You are about to vote for:</p>\';
+            messageHTML += \'<p style="margin: 0 0 15px 0; font-weight: 600; color: #dc3545;">⚠️ \' + getTranslatedText(\'This vote cannot be changed once submitted!\') + \'</p>\';
+            messageHTML += \'<p style="margin: 0 0 15px 0;">\' + getTranslatedText(\'You are about to vote for:\') + \'</p>\';
             
             
             selectedTexts.forEach(text => {
                 messageHTML += \'<div class="vote-confirmation-option" style="background: #f8f9fa; padding: 12px 16px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #007bff; text-align: left; font-weight: 500; color: #333;">\' + text + \'</div>\';
             });
             
-            messageHTML += \'<p style="margin: 15px 0 0 0; font-weight: 600; color: #495057;">Continue?</p>\';
+            messageHTML += \'<p style="margin: 15px 0 0 0; font-weight: 600; color: #495057;">\' + getTranslatedText(\'Continue?\') + \'</p>\';
             messageHTML += \'</div>\';
             
             modalMessage.innerHTML = messageHTML;
             modalIcon.innerHTML = \'<svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>\';
             modalIcon.className = \'modal-icon success\';
             
-            modalBtn.textContent = \'OK\';
+            modalBtn.textContent = getTranslatedText(\'Submit Vote\');
             modalBtn.className = \'modal-btn\';
             modalBtn.onclick = function() {
                 closeModal();
                 submitVote(pollId, selectedOptions);
             };
             
-            modalCancelBtn.textContent = \'Cancel\';
+            modalCancelBtn.textContent = getTranslatedText(\'Cancel\');
             modalCancelBtn.style.display = \'inline-block\';
             modalCancelBtn.onclick = closeModal;
             
